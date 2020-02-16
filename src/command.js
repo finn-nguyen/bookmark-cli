@@ -1,4 +1,6 @@
 require("./db");
+const killer = require('./services/killer')
+const mongoose = require("mongoose");
 const commander = require("commander");
 const _ = require('lodash')
 const bookmarkTransformer = require('./transformers/bookmark')
@@ -25,6 +27,7 @@ program
       const result = _.flow([categoryTransformer, categoryPresenter])(categories)
       console.log(result)
     }
+    killer.exit()
   });
 
 program
@@ -39,6 +42,7 @@ program
     })
     const result = _.flow([bookmarkTransformer, bookmarkPresenter])(bookmark)
     console.log(result)
+    killer.exit()
   });
 
 program
