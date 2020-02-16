@@ -21,7 +21,7 @@ module.exports.findByTitle = title =>
   });
 
 module.exports.findByCategoryId = category => {
-  return Bookmark.findOne({
+  return Bookmark.find({
     category
   })
 };

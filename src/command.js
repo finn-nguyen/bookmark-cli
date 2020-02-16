@@ -1,5 +1,10 @@
 require("./db");
 const commander = require("commander");
+const _ = require('lodash')
+const bookmarkTransformer = require('./transformers/bookmark')
+const categoryTransformer = require('./transformers/category')
+const bookmarkPresenter = require('./presenters/bookmark')
+const categoryPresenter = require('./presenters/category')
 const bookmarkService = require('./services/bookmark')
 const categoryService = require('./services/category')
 
@@ -13,16 +18,13 @@ program
   .action(async category => {
     if (category) {
       const bookmarks = await bookmarkService.findByCategoryName(category)
-      console.log({
-        bookmarks
-      })
+      const result = _.flow([bookmarkTransformer, bookmarkPresenter])(bookmarks)
+      console.log(result)
     } else {
-      const categories = await categoryService.findAllCategories()
-      console.log({
-        categories
-      })
+      const categories = await bookmarkService.getBookmarksByCategories()
+      const result = _.flow([categoryTransformer, categoryPresenter])(categories)
+      console.log(result)
     }
-
   });
 
 program
@@ -30,17 +32,13 @@ program
   .description("Add a new bookmark")
   .action(async (category_name, url, title) => {
     const category = await categoryService.findOrCreate(category_name)
-    console.log({
-      category
-    })
     const bookmark = await bookmarkService.createBookmark({
       category: category.id,
       url,
       title
     })
-    console.log({
-      bookmark
-    })
+    const result = _.flow([bookmarkTransformer, bookmarkPresenter])(bookmark)
+    console.log(result)
   });
 
 program

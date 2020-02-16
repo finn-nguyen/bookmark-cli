@@ -7,7 +7,7 @@ module.exports.create = ({
     name
   });
 
-module.exports.findAll = () => Category.find({});
+module.exports.findAll = () => Category.find();
 
 module.exports.findByName = name =>
   Category.findOne({
