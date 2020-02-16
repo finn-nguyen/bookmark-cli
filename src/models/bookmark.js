@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 const bookmarkSchema = new Schema({
   title: {
     type: String,
-    require: false
+    require: true,
+    unique: true
   },
   url: {
     type: String,

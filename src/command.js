@@ -1,4 +1,7 @@
 require("./db");
+const {
+  exec
+} = require("child_process");
 const killer = require('./services/killer')
 const commander = require("commander");
 const _ = require('lodash')
@@ -43,6 +46,19 @@ program
     console.log(result)
     killer.exit()
   });
+
+program.command("open <title>")
+  .description("Open specific bookmark url")
+  .action(async (title) => {
+    try {
+      const {
+        url
+      } = await bookmarkService.findBookmarkByTitle(title)
+      exec(`open ${url}`)
+    } finally {
+      killer.exit()
+    }
+  })
 
 program
   .command("remove <id>")
