@@ -1,0 +1,1 @@
+module.exports = (categories) => categories.map(category => category.name)

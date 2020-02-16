@@ -1,0 +1,1 @@
+module.exports = (bookmarks) => bookmarks.map(bookmark => bookmark.url)

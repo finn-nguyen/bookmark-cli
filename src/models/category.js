@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-const categorySchema = new mongoose.Schema({
-  _id: Schema.Types.ObjectId,
+const categorySchema = new Schema({
   name: {
     type: String,
     require: true
@@ -9,23 +9,9 @@ const categorySchema = new mongoose.Schema({
   bookmarks: [{
     type: Schema.Types.ObjectId,
     ref: "Bookmark"
+  }, {
+    timestamps: true
   }]
 });
 
-const Category = mongoose.model("Category", categorySchema);
-
-module.exports.create = ({
-  name
-}) => Category.create({
-  name
-})
-
-module.exports.findAll = () => Category.find()
-
-module.exports.findByName = (name) => Category.find({
-  name
-})
-
-module.exports.findById = (id) => Category.find({
-  _id: id
-})
+module.exports = mongoose.model("Category", categorySchema);

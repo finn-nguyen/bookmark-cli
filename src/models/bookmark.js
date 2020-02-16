@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-const bookmarkSchema = new mongoose.Schema({
-  _id: Schema.Types.ObjectId,
+const bookmarkSchema = new Schema({
   title: {
     type: String,
     require: false
@@ -12,30 +12,11 @@ const bookmarkSchema = new mongoose.Schema({
   },
   category: {
     type: Schema.Types.ObjectId,
-    ref: "Category"
+    ref: "Category",
+    require: true
   }
+}, {
+  timestamps: true
 });
 
-const Bookmark = mongoose.model("Bookmark", bookmarkSchema);
-
-module.exports.create = ({
-  type,
-  category,
-  url
-}) => Bookmark.create({
-  type,
-  category,
-  url
-})
-
-module.exports.findAll = () => Bookmark.find()
-
-module.exports.findByTitle = (title) => Bookmark.find({
-  title
-})
-
-module.exports.findByCategory = (category) => {
-  return Bookmark.find().populate('bookmarks', null, {
-    name: category
-  })
-}
+module.exports = mongoose.model("Bookmark", bookmarkSchema);

@@ -1,5 +1,7 @@
 require("./db");
 const commander = require("commander");
+const bookmarkService = require('./services/bookmark')
+const categoryService = require('./services/category')
 
 const program = new commander.Command();
 
@@ -8,17 +10,37 @@ program.version("1.0.0");
 program
   .command("list [category]")
   .description("List all categories or bookmark in a category")
-  .action(category => {
-    console.log({
-      category
-    });
+  .action(async category => {
+    if (category) {
+      const bookmarks = await bookmarkService.findByCategoryName(category)
+      console.log({
+        bookmarks
+      })
+    } else {
+      const categories = await categoryService.findAllCategories()
+      console.log({
+        categories
+      })
+    }
+
   });
 
 program
-  .command("add <category> <url>")
+  .command("add <category_name> <url> [title]")
   .description("Add a new bookmark")
-  .action((category, url) => {
-    console.log(`${category} ${url}`);
+  .action(async (category_name, url, title) => {
+    const category = await categoryService.findOrCreate(category_name)
+    console.log({
+      category
+    })
+    const bookmark = await bookmarkService.createBookmark({
+      category: category.id,
+      url,
+      title
+    })
+    console.log({
+      bookmark
+    })
   });
 
 program
