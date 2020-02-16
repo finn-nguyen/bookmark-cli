@@ -1,6 +1,5 @@
 require("./db");
 const killer = require('./services/killer')
-const mongoose = require("mongoose");
 const commander = require("commander");
 const _ = require('lodash')
 const bookmarkTransformer = require('./transformers/bookmark')
