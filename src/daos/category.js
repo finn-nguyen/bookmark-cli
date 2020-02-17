@@ -1,10 +1,9 @@
-const Category = require('../models/category')
+const Category = require("../models/category");
 
-module.exports.create = ({
-    name
-  }) =>
+module.exports.create = ({ name, _id }) =>
   Category.create({
-    name
+    name,
+    _id
   });
 
 module.exports.findAll = () => Category.find();
@@ -19,14 +18,14 @@ module.exports.findById = id =>
     _id: id
   });
 
-module.exports.findOrCreate = async (name) => {
+module.exports.findOrCreate = async name => {
   let category = await Category.findOne({
     name
-  })
+  });
   if (!category) {
     category = await Category.create({
       name
-    })
+    });
   }
-  return category
-}
+  return category;
+};

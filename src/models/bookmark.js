@@ -1,23 +1,26 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const bookmarkSchema = new Schema({
-  title: {
-    type: String,
-    require: true,
-    unique: true
+const bookmarkSchema = new Schema(
+  {
+    title: {
+      type: String,
+      require: true
+    },
+    url: {
+      type: String,
+      require: true
+    },
+    category: {
+      type: Number,
+      ref: "Category",
+      require: true
+    },
+    _id: Number
   },
-  url: {
-    type: String,
-    require: true
-  },
-  category: {
-    type: Schema.Types.ObjectId,
-    ref: "Category",
-    require: true
+  {
+    timestamps: true
   }
-}, {
-  timestamps: true
-});
+);
 
 module.exports = mongoose.model("Bookmark", bookmarkSchema);
