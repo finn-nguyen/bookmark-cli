@@ -43,8 +43,27 @@ module.exports.scoreBookmark = async (id, score) => {
   const bookmark = await bookmarkDAO.findById(id);
   bookmark.score = score;
   await bookmark.save();
+  return bookmark;
 };
 
 module.exports.deleteBookmark = async id => {
   await bookmarkDAO.deleteBookmark(id);
+};
+
+module.exports.updateTitle = async (id, title) => {
+  const bookmark = await bookmarkDAO.findById(id);
+  bookmark.title = title;
+  await bookmark.save();
+  return bookmark;
+};
+
+module.exports.updateBookmark = async (id, params) => {
+  const bookmark = await bookmarkDAO.findById(id);
+  for (let prop in params) {
+    if (params[prop] != null) {
+      bookmark[prop] = params[prop];
+    }
+  }
+  await bookmark.save();
+  return bookmark;
 };

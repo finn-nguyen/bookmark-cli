@@ -4,10 +4,10 @@ const table = new Table({
   head: ["ID", "Title", "Score", "URL"]
 });
 
-module.exports = bookmarks => {
+module.exports = projector => bookmarks => {
   bookmarks.forEach(bookmark => {
     const { title, url, id, score } = bookmark;
     table.push([id, title, score, url]);
   });
-  return table.toString();
+  projector(table.toString());
 };

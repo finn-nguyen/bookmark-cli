@@ -20,16 +20,10 @@ program
   .action(async category => {
     if (category) {
       const bookmarks = await bookmarkService.findByCategoryName(category);
-      const result = _.flow([bookmarkTransformer, bookmarkPresenter])(
-        bookmarks
-      );
-      console.log(result);
+      _.flow([bookmarkTransformer, bookmarkPresenter(console.log)])(bookmarks);
     } else {
       const categories = await bookmarkService.getBookmarksByCategories();
-      const result = _.flow([categoryTransformer, categoryPresenter])(
-        categories
-      );
-      console.log(result);
+      _.flow([categoryTransformer, categoryPresenter(console.log)])(categories);
     }
     killer.exit();
   });
@@ -47,8 +41,7 @@ program
       title,
       score
     });
-    const result = _.flow([bookmarkTransformer, bookmarkPresenter])(bookmark);
-    console.log(result);
+    _.flow([bookmarkTransformer, bookmarkPresenter(console.log)])(bookmark);
     killer.exit();
   });
 
@@ -73,10 +66,15 @@ program
   });
 
 program
-  .command("score <id> <score>")
-  .description("Score bookmark")
-  .action(async (id, score) => {
-    await bookmarkService.scoreBookmark(id, score);
+  .command("update <id>")
+  .option("-t, --title [title]", "bookmark title")
+  .option("-s, --score [score]", "bookmark score")
+  .option("-u, --url [url]", "bookmark url")
+  .description("Update bookmark")
+  .action(async (id, { title, score, url }) => {
+    const params = { title, score, url };
+    const bookmark = await bookmarkService.updateBookmark(id, params);
+    _.flow([bookmarkTransformer, bookmarkPresenter(console.log)])(bookmark);
     killer.exit();
   });
 
