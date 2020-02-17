@@ -38,3 +38,13 @@ module.exports.getBookmarksByCategories = async () => {
   }
   return result;
 };
+
+module.exports.scoreBookmark = async (id, score) => {
+  const bookmark = await bookmarkDAO.findById(id);
+  bookmark.score = score;
+  await bookmark.save();
+};
+
+module.exports.deleteBookmark = async id => {
+  await bookmarkDAO.deleteBookmark(id);
+};

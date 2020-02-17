@@ -73,12 +73,19 @@ program
   });
 
 program
-  .command("remove <id>")
-  .description("Remove bookmark by bookmark id")
-  .action(id => {
-    console.log({
-      id
-    });
+  .command("score <id> <score>")
+  .description("Score bookmark")
+  .action(async (id, score) => {
+    await bookmarkService.scoreBookmark(id, score);
+    killer.exit();
+  });
+
+program
+  .command("delete <id>")
+  .description("Delete bookmark by bookmark id")
+  .action(async id => {
+    await bookmarkService.deleteBookmark(id);
+    killer.exit();
   });
 
 program.parse(process.argv);

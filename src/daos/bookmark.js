@@ -24,3 +24,5 @@ module.exports.findByCategoryId = category => {
     category
   }).sort({ score: 1 });
 };
+
+module.exports.deleteBookmark = id => Bookmark.deleteOne({ _id: id });
