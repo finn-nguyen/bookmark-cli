@@ -53,12 +53,19 @@ program
   });
 
 program
-  .command("open <id>")
-  .description("Open specific bookmark url")
-  .action(async id => {
+  .command("open <identify>")
+  .description("Open specific bookmark url by id or title")
+  .action(async identify => {
     try {
-      const bookmarkId = parseInt(id);
-      const { url } = await bookmarkService.findBookmarkById(bookmarkId);
+      const field = parseInt(identify) || identify;
+      const finder = type => {
+        const handlers = {
+          number: bookmarkService.findBookmarkById,
+          string: bookmarkService.findBookmarkByTitle
+        };
+        return handlers[type];
+      };
+      const { url } = await finder(typeof field)(field);
       exec(`open ${url}`);
     } finally {
       killer.exit();
