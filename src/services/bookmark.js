@@ -15,6 +15,8 @@ module.exports.findAllBookmarks = () => bookmarkDAO.findAll();
 
 module.exports.findBookmarkByTitle = title => bookmarkDAO.findByTitle(title);
 
+module.exports.findBookmarkById = id => bookmarkDAO.findById(id);
+
 module.exports.findByCategoryId = id => bookmarkDAO.findByCategoryId(id);
 
 module.exports.findByCategoryName = async name => {

@@ -16,6 +16,8 @@ module.exports.findByTitle = title =>
     title
   });
 
+module.exports.findById = id => Bookmark.findOne({ _id: id });
+
 module.exports.findByCategoryId = category => {
   return Bookmark.find({
     category
