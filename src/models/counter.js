@@ -7,7 +7,7 @@ const counterSchema = new Schema(
     sequence: {
       type: Number,
       require: true,
-      default: 0
+      default: 1
     }
   },
   {

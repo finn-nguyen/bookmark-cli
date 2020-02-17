@@ -2,8 +2,9 @@ const bookmarkDAO = require("../daos/bookmark");
 const categoryService = require("./category");
 const counterService = require("./counter");
 
-module.exports.createBookmark = async ({ type, category, url, title }) =>
+module.exports.createBookmark = async ({ type, category, url, title, score }) =>
   bookmarkDAO.create({
+    score,
     type,
     category,
     url,
@@ -30,6 +31,7 @@ module.exports.getBookmarksByCategories = async () => {
   for (let category of categories) {
     const bookmarks = await bookmarkDAO.findByCategoryId(category._id);
     result.push({
+      _id: category._id,
       name: category.name,
       bookmarks
     });

@@ -16,7 +16,11 @@ const bookmarkSchema = new Schema(
       ref: "Category",
       require: true
     },
-    _id: Number
+    _id: Number,
+    score: {
+      type: Number,
+      default: 0
+    }
   },
   {
     timestamps: true

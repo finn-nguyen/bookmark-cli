@@ -1,16 +1,13 @@
-const Table = require("cli-table")
+const Table = require("cli-table");
 
 const table = new Table({
-  head: ['', 'Title', 'URL'],
-})
+  head: ["ID", "Title", "Score", "URL"]
+});
 
-module.exports = (bookmarks) => {
-  bookmarks.forEach((bookmark, index) => {
-    const {
-      title,
-      url
-    } = bookmark
-    table.push([index + 1, title, url])
-  })
-  return table.toString()
-}
+module.exports = bookmarks => {
+  bookmarks.forEach(bookmark => {
+    const { title, url, id, score } = bookmark;
+    table.push([id, title, score, url]);
+  });
+  return table.toString();
+};

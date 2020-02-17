@@ -1,16 +1,13 @@
-const Table = require("cli-table")
+const Table = require("cli-table");
 
 const table = new Table({
-  head: ['', 'Category', 'Bookmarks'],
-})
+  head: ["ID", "Category", "Bookmarks"]
+});
 
-module.exports = (categories) => {
-  categories.forEach((category, index) => {
-    const {
-      name,
-      bookmarks
-    } = category
-    table.push([index + 1, name, bookmarks])
-  })
-  return table.toString()
-}
+module.exports = categories => {
+  categories.forEach(category => {
+    const { name, bookmarks, id } = category;
+    table.push([id, name, bookmarks]);
+  });
+  return table.toString();
+};

@@ -35,14 +35,17 @@ program
   });
 
 program
-  .command("add <category_name> <url> [title]")
+  .command("add <category_name> <url>")
+  .option("-s, --score <score>", "bookmark score")
+  .option("-t, --title [title]", "bookmark title")
   .description("Add a new bookmark")
-  .action(async (category_name, url, title) => {
+  .action(async (category_name, url, { score = 0, title = "" }) => {
     const category = await categoryService.findOrCreate(category_name);
     const bookmark = await bookmarkService.createBookmark({
       category: category.id,
       url,
-      title
+      title,
+      score
     });
     const result = _.flow([bookmarkTransformer, bookmarkPresenter])(bookmark);
     console.log(result);

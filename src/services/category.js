@@ -21,6 +21,5 @@ module.exports.findOrCreate = async name => {
       _id: await counterService.nextCategorySequence()
     });
   }
-  console.log({ category });
   return category;
 };
