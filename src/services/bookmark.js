@@ -1,8 +1,14 @@
-const bookmarkDAO = require("../daos/bookmark");
+const bookmarkDAO = require("../daos/mongo/bookmark");
 const categoryService = require("./category");
 const counterService = require("./counter");
 
-module.exports.createBookmark = async ({ type, category, url, title, score }) =>
+module.exports.createBookmark = async ({
+    type,
+    category,
+    url,
+    title,
+    score
+  }) =>
   bookmarkDAO.create({
     score,
     type,

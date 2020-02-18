@@ -1,6 +1,9 @@
-const Category = require("../models/category");
+const Category = require("../../models/category");
 
-module.exports.create = ({ name, _id }) =>
+module.exports.create = ({
+    name,
+    _id
+  }) =>
   Category.create({
     name,
     _id

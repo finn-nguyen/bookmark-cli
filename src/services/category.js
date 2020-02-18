@@ -1,7 +1,9 @@
-const categoryDAO = require("../daos/category");
+const categoryDAO = require("../daos/mongo/category");
 const counterService = require("./counter");
 
-module.exports.createCategory = async ({ name }) =>
+module.exports.createCategory = async ({
+    name
+  }) =>
   categoryDAO.create({
     name,
     _id: await counterService.nextCategorySequence()

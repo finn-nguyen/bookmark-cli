@@ -1,4 +1,4 @@
-const counterDAO = require("../daos/counter");
+const counterDAO = require("../daos/mongo/counter");
 
 const nextSequence = async id => {
   const counter = await counterDAO.findOrCreate(id);
