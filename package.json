@@ -3,8 +3,14 @@
   "version": "1.0.0",
   "description": "Bookmark cli",
   "main": "index.js",
+  "files": [
+    "lib"
+  ],
   "scripts": {
-    "dev": "nodemon src/command.js"
+    "dev": "nodemon src/command.js",
+    "clean": "rm -rf lib",
+    "prebuild": "yarn run clean",
+    "build": "babel src -d lib"
   },
   "author": "",
   "license": "ISC",
@@ -16,5 +22,8 @@
     "lodash": "^4.17.15",
     "mongoose": "^5.9.1"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.4"
+  }
 }
