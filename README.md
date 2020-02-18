@@ -5,6 +5,7 @@
 ### List all categories
 
 List all categories or all bookmark in a category
+##### Example
 
 ```
 bookmark list
@@ -22,6 +23,7 @@ If category is missing it will list all categories.
 ### Add a new bookmark
 
 Add a new bookmark in a category.
+##### Example
 
 ```
 bookmark add golang http://golang.org -t golang -s 100
@@ -40,6 +42,7 @@ Options:
 ### Open a bookmark
 
 Open a bookmark by title or id
+##### Example
 
 ```
 bookmark open 1
@@ -55,6 +58,7 @@ bookmark open <id | title>
 ### Update a bookmark
 
 Update title, url, score of a bookmark by id
+##### Example
 
 ```
 bookmark update 1 -t golang -u http://golang.org -s 25
@@ -74,6 +78,7 @@ Options:
 ### Delete a bookmark
 
 Delete a bookmark by id
+##### Example
 
 ```
 bookmark delete 2
