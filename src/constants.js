@@ -1,0 +1,1 @@
+module.exports.LOCAL_DB = '~/.bookmark'
