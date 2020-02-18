@@ -49,7 +49,7 @@ bookmark open golang
 ##### Usage
 
 ```
-bookmark delete <id | title>
+bookmark open <id | title>
 ```
 
 ### Update a bookmark
