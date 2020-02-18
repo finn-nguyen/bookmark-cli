@@ -1,8 +1,14 @@
 const _ = require("lodash");
-const killer = require("../services/killer");
+const executeService = require("../services/executor");
 const bookmarkTransformer = require("../transformers/bookmark");
 const bookmarkPresenter = require("../presenters/bookmark");
 const bookmarkService = require("../services/bookmark");
+
+const updateHandler = (id, title, score, url) => async () => {
+  const params = { title, score, url };
+  const bookmark = await bookmarkService.updateBookmark(id, params);
+  _.flow([bookmarkTransformer, bookmarkPresenter(console.log)])(bookmark);
+};
 
 module.exports = program => {
   program
@@ -12,9 +18,7 @@ module.exports = program => {
     .option("-u, --url [url]", "bookmark url")
     .description("Update bookmark")
     .action(async (id, { title, score, url }) => {
-      const params = { title, score, url };
-      const bookmark = await bookmarkService.updateBookmark(id, params);
-      _.flow([bookmarkTransformer, bookmarkPresenter(console.log)])(bookmark);
-      killer.exit();
+      const handler = updateHandler(id, title, score, url);
+      await executeService(handler);
     });
 };
