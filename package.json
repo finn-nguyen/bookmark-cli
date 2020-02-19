@@ -2,15 +2,18 @@
   "name": "bookmark",
   "version": "1.0.0",
   "description": "Bookmark cli",
-  "main": "index.js",
+  "main": "./bin/index.js",
+  "bin": {
+    "bookmark": "./bin/index.js"
+  },
   "files": [
-    "lib"
+    "bin"
   ],
   "scripts": {
     "dev": "nodemon src/command.js",
     "clean": "rm -rf lib",
     "prebuild": "yarn run clean",
-    "build": "babel src -d lib"
+    "build": "babel src -d bin"
   },
   "author": "",
   "license": "ISC",
@@ -24,6 +27,7 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.8.4"
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4"
   }
 }
