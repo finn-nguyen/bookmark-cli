@@ -1,13 +1,19 @@
 # Bookmark CLI
 
 ## Prerequisite
+
 Mongo DB server is running on your local machine
 
 ## Installation
 
+```
+npm install -g node-bookmark-cli
+```
+
 ### List all categories
 
 List all categories or all bookmark in a category
+
 ##### Example
 
 ```
@@ -26,6 +32,7 @@ If category is missing it will list all categories.
 ### Add a new bookmark
 
 Add a new bookmark in a category.
+
 ##### Example
 
 ```
@@ -45,6 +52,7 @@ Options:
 ### Open a bookmark
 
 Open a bookmark by title or id
+
 ##### Example
 
 ```
@@ -61,6 +69,7 @@ bookmark open <id | title>
 ### Update a bookmark
 
 Update title, url, score of a bookmark by id
+
 ##### Example
 
 ```
@@ -81,6 +90,7 @@ Options:
 ### Delete a bookmark
 
 Delete a bookmark by id
+
 ##### Example
 
 ```
