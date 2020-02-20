@@ -10,6 +10,7 @@
     "bookmark",
     "cli"
   ],
+  "repository": "https://github.com/finn-nguyen/bookmark-cli",
   "files": [
     "bin"
   ],
