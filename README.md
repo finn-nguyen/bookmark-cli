@@ -1,5 +1,8 @@
 # Bookmark CLI
 
+## Prerequisite
+Mongo DB server is running on your local machine
+
 ## Installation
 
 ### List all categories
