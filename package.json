@@ -1,5 +1,5 @@
 {
-  "name": "bookmark",
+  "name": "node-bookmark-cli",
   "version": "1.0.0",
   "description": "Bookmark cli",
   "main": "./bin/index.js",
