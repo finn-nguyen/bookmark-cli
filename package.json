@@ -15,7 +15,7 @@
     "prebuild": "yarn run clean",
     "build": "babel src -d bin"
   },
-  "author": "",
+  "author": "finn.nguyen",
   "license": "ISC",
   "dependencies": {
     "chalk": "^3.0.0",
