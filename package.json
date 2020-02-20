@@ -6,6 +6,10 @@
   "bin": {
     "bookmark": "./bin/index.js"
   },
+  "keywords": [
+    "bookmark",
+    "cli"
+  ],
   "files": [
     "bin"
   ],
